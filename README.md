@@ -47,6 +47,7 @@ e.g. `C:\Program Files\apache-maven-3.8.6\bin`. `$ mvn -v`
      - `$ mvn package` to detects the Maven and gives you a working build 
      - `$ mvn dependency:tree` to check the pom file and install any dependency, what it is only `com.example:myproject:jar:0.0.1-SNAPSHOT`
    - Add the recommended dependencies and re-run the last command to install them
+
 3. Create the main Java file `src/main/java/MyApplication.java` with the SpringBoot syntax and run `$ mvn spring-boot:run`
 
 4. Create a completely self-contained executable **Jar** that we could run in production
@@ -62,3 +63,14 @@ e.g. `C:\Program Files\apache-maven-3.8.6\bin`. `$ mvn -v`
           </build>
        ```
    - Click again the Maven button; run `$ mvn package`; and finally `$ java -jar ./target/myproject-0.0.1-SNAPSHOT.jar`
+
+## RESTful API
+1. Create a package called `Customer` and a Spring Application (`@SpringBootApplication`): 
+   - Right button over `java` folder -> New > Package -> `Customer`
+   - Right button over `Customer` package ->  New > Java Class -> `CustomerApplication`. This must include the annotation 
+   `@SpringBootApplication`
+
+2. Create a `Customer` class with getters and setters for `name` and `email`
+
+3. Create a customer controller:  
+  - Right button over `Customer` package ->  New > Java Class -> `CustomerController`. This must include the `@RestController`
