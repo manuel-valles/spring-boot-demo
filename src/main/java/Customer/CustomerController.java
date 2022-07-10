@@ -35,13 +35,9 @@ public class CustomerController {
 
     @PutMapping("/customer/{id}")
     Customer update(@PathVariable Long id, @RequestBody Customer newCustomer){
-        return repository.findById(id).map(customer -> {
-            customer.setName(newCustomer.getName());
-            customer.setEmail(newCustomer.getEmail());
-            return customer;
-        }).orElseGet(() -> {
-            newCustomer.setId(id);
-            return repository.save(newCustomer);
-        });
+        Customer customerToUpdate =  repository.findById(id).orElseThrow(() -> new CustomerNotFoundException(id));
+        customerToUpdate.setName(newCustomer.getName());
+        customerToUpdate.setEmail(newCustomer.getEmail());
+        return repository.save(customerToUpdate);
     }
 }

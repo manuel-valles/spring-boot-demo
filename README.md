@@ -104,3 +104,7 @@ e.g. `C:\Program Files\apache-maven-3.8.6\bin`. `$ mvn -v`
      - Create a Controller Advice class under `Customer` package called `CustomerNotFoundAdvice` that includes the annotations
      `@ControllerAdvice`, `@ResponseBody` (only when there is a response), `@ExceptionHandler(CustomerNotFoundException.class)`
      (only when the `CustomerNotFoundException` is raised) and `@ResponseStatus(HttpStatus.NOT_FOUND)` (it will return a `404`)
+
+5. Connect with a MySQL database
+    - Add MySQL dependency, what can be found through the _initializr_: ADD DEPENDENCIES > MySQL Driver, to the `pom.xml` file
+    - Specify the DB details in the `application.properties` under the `resources` directory under `src/main`
