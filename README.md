@@ -67,10 +67,34 @@ e.g. `C:\Program Files\apache-maven-3.8.6\bin`. `$ mvn -v`
 ## RESTful API
 1. Create a package called `Customer` and a Spring Application (`@SpringBootApplication`): 
    - Right button over `java` folder -> New > Package -> `Customer`
-   - Right button over `Customer` package ->  New > Java Class -> `CustomerApplication`. This must include the annotation 
-   `@SpringBootApplication`
+- Right button over `Customer` package ->  New > Java Class -> `CustomerApplication`. This must include the annotation 
+`@SpringBootApplication`
 
 2. Create a `Customer` class with getters and setters for `name` and `email`
 
-3. Create a customer controller:  
-  - Right button over `Customer` package ->  New > Java Class -> `CustomerController`. This must include the `@RestController`
+3. Create a customer controller:
+   - Right button over `Customer` package ->  New > Java Class -> `CustomerController`. This must include the `@RestController`
+
+4. Use **JPA** (_Java Persistence API_) dependency: `spring-boot-starter-data-jpa` (search for it under `Dependencies`)
+    - Install JPA dependency through IntelliJ Dependencies section `spring-boot-starter-data-jpa`
+    - Add the annotation `@Entity` to the `Customer` class
+    - Add a `@PostMapping` in the `CustomerController`, what will require a `CustomerRepository` **interface** `<EntityType, EntityID>`
+    - Create a _constructor_ in the `CustomerController` to inject the previous `CustomerRepository` to be able to use 
+    all the available methods (`dependency injection`) like `.save()`
+    - Add a DB dependency in the `pom.xml` file, e.g. `H2` can be found using the _initializr_: ADD DEPENDENCIES > H2 Database
+   ```xml
+    <dependency>
+      <groupId>com.h2database</groupId>
+      <artifactId>h2</artifactId>
+      <scope>runtime</scope>
+    </dependency> 
+   ```
+   - Add the annotations `@Id @GeneratedValue` in the `Customer Entity` for the `id` to provide the type `Id` and autogenerate 
+   a new one every time; Also do not forget to create a default `Customer` constructor for the same entity
+   - _POST_ request example:
+   ```json
+    {
+      "name": "Manu",
+      "email": "manukempo@gmail.com"
+    }
+    ```
