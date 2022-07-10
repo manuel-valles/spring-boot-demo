@@ -1,11 +1,9 @@
 package Customer;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 public class CustomerController {
@@ -24,5 +22,15 @@ public class CustomerController {
     @PostMapping("/customer")
     Customer save(@RequestBody Customer newCustomer){
         return repository.save(newCustomer);
+    }
+
+    @DeleteMapping("/customer/{id}")
+    void delete(@PathVariable Long id){
+        repository.deleteById(id);
+    }
+
+    @GetMapping("/customer/{id}")
+    Optional<Customer> get(@PathVariable Long id){
+        return repository.findById(id);
     }
 }
