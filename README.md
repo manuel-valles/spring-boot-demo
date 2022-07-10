@@ -49,3 +49,16 @@ e.g. `C:\Program Files\apache-maven-3.8.6\bin`. `$ mvn -v`
    - Add the recommended dependencies and re-run the last command to install them
 3. Create the main Java file `src/main/java/MyApplication.java` with the SpringBoot syntax and run `$ mvn spring-boot:run`
 
+4. Create a completely self-contained executable **Jar** that we could run in production
+   - Add the required plugins to the `pom.xml`
+       ```xml
+          <build>
+              <plugins>
+                  <plugin>
+                      <groupId>org.springframework.boot</groupId>
+                      <artifactId>spring-boot-maven-plugin</artifactId>
+                  </plugin>
+              </plugins>
+          </build>
+       ```
+   - Click again the Maven button; run `$ mvn package`; and finally `$ java -jar ./target/myproject-0.0.1-SNAPSHOT.jar`
