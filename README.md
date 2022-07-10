@@ -98,3 +98,9 @@ e.g. `C:\Program Files\apache-maven-3.8.6\bin`. `$ mvn -v`
       "email": "manukempo@gmail.com"
     }
     ```
+   - Handle exceptions _404_:
+     - Create a Handler Exception class under `Customer` package called `CustomerNotFoundException` that extends `RuntimeException` 
+     with the customised message
+     - Create a Controller Advice class under `Customer` package called `CustomerNotFoundAdvice` that includes the annotations
+     `@ControllerAdvice`, `@ResponseBody` (only when there is a response), `@ExceptionHandler(CustomerNotFoundException.class)`
+     (only when the `CustomerNotFoundException` is raised) and `@ResponseStatus(HttpStatus.NOT_FOUND)` (it will return a `404`)

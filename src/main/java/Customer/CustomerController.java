@@ -3,7 +3,6 @@ package Customer;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 public class CustomerController {
@@ -30,7 +29,7 @@ public class CustomerController {
     }
 
     @GetMapping("/customer/{id}")
-    Optional<Customer> get(@PathVariable Long id){
-        return repository.findById(id);
+    Customer get(@PathVariable Long id){
+        return repository.findById(id).orElseThrow(() -> new CustomerNotFoundException(id));
     }
 }
